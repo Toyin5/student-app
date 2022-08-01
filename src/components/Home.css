@@ -1,0 +1,11 @@
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-weight: 40px;
+}
+
+nav ul {
+    display: flex;
+    gap: 10px;
+}

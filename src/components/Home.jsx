@@ -1,12 +1,36 @@
 import React from 'react'
+// import Reader from 'react-qr-scanner'
+import "./Home.css"
+import Footer from './layouts/Footer';
+import Navbar from './layouts/NavBar';
+
 
 function Home() {
-  const user = localStorage.getItem("name")
+  const user = localStorage.getItem("name");
+
+  const contentStyle = {
+    "paddingTop": "50px"
+  }
+
+  const footerStyle = {
+    "paddingTop": "70px"
+  }
+
+
   return (
-    <div className='container'>
-        
-        <h1>Welcome {user}</h1>
-    </div>
+    <>
+      <Navbar />
+      <div style={contentStyle} className='content has-text-centered'>
+
+        <h1>Welcome, {user}</h1>
+        <p>
+          Welcome to the Attendance Management System(AMS) student App
+          <br />Click the button below to register an attendance
+        </p>
+        <button className='button is-focus is-primary is-inverted'>Scan Code</button>
+      </div>
+      <Footer style={footerStyle} />
+    </>
   )
 }
 

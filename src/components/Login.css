@@ -1,8 +1,8 @@
-.login-panel{
-  position:relative;
-  display: flex;
-  flex-direction: column;
-  padding: 0S;
+.login-panel {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 0S;
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
@@ -12,12 +12,12 @@
 	width: 320px;
 	padding: 30px;
 	padding-top: 30px;
-  align-content: center;
+	align-content: center;
 }
 
 .login__field {
-	padding: 20px 0px;	
-	position: relative;	
+	padding: 20px 0px;
+	position: relative;
 }
 
 .login__icon {
@@ -75,19 +75,19 @@
 	color: #7875B5;
 }
 
-header{
-  display: flex;
-  align-items: center;
-  font-size: 3em;
-  font-weight: bold;
+header {
+	display: flex;
+	align-items: center;
+	font-size: 3em;
+	font-weight: bold;
 }
 
-.header-icon{
-  font-size: 70px;
+.header-icon {
+	font-size: 70px;
 	margin-left: auto;
 	color: #7875B5;
 }
 
-.header-text{
-  text-transform: capitalize;
+.header-text {
+	text-transform: capitalize;
 }

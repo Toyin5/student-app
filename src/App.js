@@ -2,24 +2,28 @@
 import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
+import "bulma/css/bulma.min.css";
+import { Routes, Route } from "react-router-dom";
+import Profile from './components/Profile';
 
 function App() {
   const loggedIn = localStorage.getItem("id");
-  // let logged = false;
-  // if ((JSON.stringify(localStorage.getItem("name")) !== "") && (JSON.stringify(localStorage.getItem("id")) !== null)) {
-  //    logged  = true;
-  // }
 
-  // console.log(JSON.stringify(localStorage.getItem("id")))
+
 
   return (
-    <div className="App">
-      {
-      loggedIn ?
-      <Home /> :
-      <Login />
-      }
+    <div>
+      <Routes>
+        <Route path="/" element={
+          loggedIn ?
+            <Home /> :
+            <Login />
+        } />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/about" element={<Login />} />
+      </Routes>
     </div>
+
   );
 }
 
