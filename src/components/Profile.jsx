@@ -44,13 +44,13 @@ const Profile = () => {
                     <div className='field'>
                         <label className='label'>Name</label>
                         <div className='control'>
-                            <input className='input' type='name' placeholder={`Old Name: ${name}`} onChange={(e) => setName(e.target.value)} />
+                            <input className='input' type='name' placeholder={`Old Name: ${name}`} onChange={(e) => setName(e.target.value)} required />
                         </div>
                     </div>
                     <div className='field'>
                         <label className='label'>ID</label>
                         <div className='control'>
-                            <input className='input' type='password' placeholder={`Old ID: ${id}`} onChange={(e) => setId(e.target.value)} />
+                            <input className='input' type='password' placeholder={`Old ID: ${id}`} onChange={(e) => setId(e.target.value)} required />
                         </div>
                     </div>
                     <button className='button is-primary'>

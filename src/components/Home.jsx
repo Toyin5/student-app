@@ -1,5 +1,5 @@
 import React from 'react'
-// import Reader from 'react-qr-scanner'
+import { Link } from 'react-router-dom';
 import "./Home.css"
 import Footer from './layouts/Footer';
 import Navbar from './layouts/NavBar';
@@ -7,6 +7,7 @@ import Navbar from './layouts/NavBar';
 
 function Home() {
   const user = localStorage.getItem("name");
+
 
   const contentStyle = {
     "paddingTop": "50px"
@@ -27,7 +28,7 @@ function Home() {
           Welcome to the Attendance Management System(AMS) student App
           <br />Click the button below to register an attendance
         </p>
-        <button className='button is-focus is-primary is-inverted'>Scan Code</button>
+        <Link to='/scan'><button className='button is-large is-focus is-primary is-inverted'>Scan Code</button></Link>
       </div>
       <Footer style={footerStyle} />
     </>

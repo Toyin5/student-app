@@ -5,6 +5,7 @@ import Login from './components/Login';
 import "bulma/css/bulma.min.css";
 import { Routes, Route } from "react-router-dom";
 import Profile from './components/Profile';
+import Scanner from './components/Scanner';
 
 function App() {
   const loggedIn = localStorage.getItem("id");
@@ -21,6 +22,7 @@ function App() {
         } />
         <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<Login />} />
+        <Route path='/scan' element={<Scanner />} />
       </Routes>
     </div>
 

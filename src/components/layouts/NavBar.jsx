@@ -20,7 +20,6 @@ const Navbar = () => {
                     <div className="navbar-item">
                         <span className="icon-text">
                             <span className="icon is-white">
-                                {/* <i class="fas fa-home"></i> */}
                                 <Link to="/"><FaHome /></Link>
                             </span>
                             <Link to="/"><span>{user}</span></Link>
@@ -43,13 +42,13 @@ const Navbar = () => {
 
                 <div className={`navbar-menu ${isOpen && "is-active"}`}>
                     <div className="navbar-start">
-                        <NavLink className="navbar-item" activeClassName="is-active" to="/">
+                        <NavLink className="navbar-item" activeclassname="is-active" to="/">
                             Home
                         </NavLink>
 
                         <NavLink
                             className="navbar-item"
-                            activeClassName="is-active"
+                            activeclassname="is-active"
                             to="/profile"
                         >
                             Profile
@@ -57,7 +56,7 @@ const Navbar = () => {
 
                         <NavLink
                             className="navbar-item"
-                            activeClassName="is-active"
+                            activeclassname="is-active"
                             to="/about"
                         >
                             About
@@ -68,12 +67,10 @@ const Navbar = () => {
                         <div className="navbar-item">
                             <span className="icon-text">
                                 <span className="icon">
-                                    {/* <i class="fas fa-home"></i> */}
                                     <Link to="/" ><FaHome /></Link>
                                 </span>
                                 <Link to="/" ><span>{user}</span></Link>
                             </span>
-
                         </div>
                     </div>
                 </div>
