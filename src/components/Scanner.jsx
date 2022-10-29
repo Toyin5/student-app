@@ -20,9 +20,9 @@ const Test = () => {
                     "id": id
                 })
             });
-            const data = await result.json();
-            setData(data.message)
-            console.log(data.message);
+            const res = await result.json();
+            setData(res.message)
+            console.log(res.message);
         } catch (err) {
             return console.log(err);
         }
