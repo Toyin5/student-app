@@ -1,11 +1,15 @@
 
+import { Alert, AlertTitle } from '@mui/material';
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 
-const Test = () => {
+const Scanner = () => {
     const [data, setData] = useState('No result');
+    const [display, setDisplay] = useState(false);
+    const [displayCamera, setDisplayCamera] = useState(true);
     const user = localStorage.getItem("name");
-    const id = localStorage.getItem("id")
+    const id = localStorage.getItem("id");
+
 
     async function register(url) {
         try {
@@ -21,17 +25,25 @@ const Test = () => {
                 })
             });
             const res = await result.json();
-            setData(res.message)
+            setData(res.message);
+            setDisplay(true)
+            setDisplayCamera(false)
             console.log(res.message);
         } catch (err) {
             return console.log(err);
         }
     }
 
-    return (
-        <div className='content has-text-centered'>
-            <figure class="image is-256x256">
+    const style = (display) ? { display: "initial" } : { display: "none" };
+    const styleCamera = (displayCamera) ? { display: "initial" } : { display: "none" };
 
+    return (
+        <div className='content has-text-centered' >
+            <Alert severity='success' style={style}>
+                <AlertTitle>Success</AlertTitle>
+                <strong>Successfully registered</strong>
+            </Alert>
+            <div style={styleCamera}>
                 <QrReader className="is-rounded"
                     constraints={{
                         facingMode: "environment"
@@ -48,10 +60,10 @@ const Test = () => {
 
                     style={{ width: '100%', height: "100%", borderRadius: "50%" }}
                 />
-            </figure>
-            <p>{data}</p>
+                <p>{data}</p>
+            </div>
         </div>
     );
 };
 
-export default Test;
+export default Scanner;
