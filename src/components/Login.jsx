@@ -1,27 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaChevronRight, FaLock, FaUser, FaUserAlt } from 'react-icons/fa';
-// import { Redirect } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import "./Login.css"
 function Login() {
-	// const [details, setDetails] = useState({
-	//     name:localStorage.getItem("name") || "",
-	//     id:localStorage.getItem("id") || null
-	// });
 	const [name, setName] = useState("");
 	const [id, setId] = useState(null);
+	const navigate = useNavigate();
+	const user = localStorage.getItem("name");
 
-	function handleSubmit() {
-		// e.preventDefault();
+	function handleSubmit(e) {
+		e.preventDefault();
 		localStorage.setItem("name", name);
 		localStorage.setItem("id", id);
+		navigate("/home")
 	}
+
+
+	useEffect(() => {
+		if (user) {
+			navigate("/home")
+		}
+	}, [user, navigate])
 
 	return (
 		<div className='login-panel content has-text-centered'>
 			<header className='header'>
 				<FaUser className='header-icon' /> <span className='header-text is-white'>Student App</span>
 			</header>
-			<form className="login" onSubmit={handleSubmit} method='GET'>
+			<form className="login" onSubmit={handleSubmit}>
 				<div className="login__field">
 					<FaUserAlt className='login__icon' />
 					<input type="text" onChange={(e) => setName(e.target.value)} className="login__input" name="uname" placeholder="Name" required />

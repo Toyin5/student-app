@@ -2,17 +2,22 @@
 import { Alert, AlertTitle } from '@mui/material';
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
+import { Oval } from 'react-loader-spinner';
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 const Scanner = () => {
-    const [data, setData] = useState('No result');
     const [display, setDisplay] = useState(false);
     const [displayCamera, setDisplayCamera] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState([]);
     const user = localStorage.getItem("name");
     const id = localStorage.getItem("id");
 
 
     async function register(url) {
         try {
+            setDisplayCamera(false)
+            setLoading(true)
             const result = await fetch(url, {
                 headers: {
                     'Accept': 'application/json',
@@ -25,12 +30,25 @@ const Scanner = () => {
                 })
             });
             const res = await result.json();
-            setData(res.message);
-            setDisplay(true)
-            setDisplayCamera(false)
+            if (res.status === 200) {
+                setLoading(false)
+                setMessage(["success", res.message])
+                setDisplay(true)
+            } else if (res.status === 409) {
+                setLoading(false)
+                setMessage(["warning", res.message])
+                setDisplay(true)
+            } else if (res.status === 401) {
+                setLoading(false)
+                setMessage(["error", "Server error! Try again"])
+                setDisplay(true)
+            }
             console.log(res.message);
         } catch (err) {
-            return console.log(err);
+            setLoading(false)
+            setMessage(["error", "Error! Check your internet"])
+            setDisplay(true)
+            console.log(err);
         }
     }
 
@@ -38,11 +56,25 @@ const Scanner = () => {
     const styleCamera = (displayCamera) ? { display: "initial" } : { display: "none" };
 
     return (
-        <div className='content has-text-centered' >
-            <Alert severity='success' style={style}>
-                <AlertTitle>Success</AlertTitle>
-                <strong>Successfully registered</strong>
-            </Alert>
+        <div>
+            {(loading) ?
+                <Oval
+                    height={150}
+                    width={150}
+                    color="#4fa94d"
+                    visible={true}
+                    ariaLabel="oval-loading"
+                    secondaryColor='#4fa94d'
+                    strokeWidth={2}
+                    strokeWidthSecondary={2}
+                    wrapperStyle={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+                />
+                :
+                <Alert severity={message[0]} style={style}>
+                    <AlertTitle>{message[0]}</AlertTitle>
+                    <strong>{message[1]}</strong>
+                </Alert>
+            }
             <div style={styleCamera}>
                 <QrReader className="is-rounded"
                     constraints={{
@@ -50,7 +82,6 @@ const Scanner = () => {
                     }}
                     onResult={(result, error) => {
                         if (!!result) {
-                            setData(result?.text);
                             register(result?.text);
                         }
                         if (!!error) {
@@ -60,7 +91,6 @@ const Scanner = () => {
 
                     style={{ width: '100%', height: "100%", borderRadius: "50%" }}
                 />
-                <p>{data}</p>
             </div>
         </div>
     );

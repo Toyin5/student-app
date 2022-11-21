@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Home.css"
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -7,6 +7,8 @@ import Fade from '@mui/material/Fade';
 import { FaBackward } from 'react-icons/fa';
 import Scanner from './Scanner';
 import { IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import Navbar from './layouts/NavBar';
 
 
 
@@ -16,6 +18,7 @@ function Home() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const navigate = useNavigate()
 
   const style = {
     position: 'absolute',
@@ -29,15 +32,20 @@ function Home() {
     p: 4,
   };
 
-
-
-
   const contentStyle = {
     "paddingTop": "50px"
   }
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/")
+    }
+  }, [user, navigate])
+
+
   return (
     <>
+      <Navbar />
       <div style={contentStyle} className='content has-text-centered'>
         <h1>Welcome, {user}</h1>
         <p>

@@ -7,7 +7,6 @@ import { Routes, Route } from "react-router-dom";
 import Profile from './components/Profile';
 import Test from './components/Scanner';
 import About from './components/About';
-import Navbar from './components/layouts/NavBar';
 import Footer from './components/layouts/Footer';
 
 function App() {
@@ -17,13 +16,17 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+
       <Routes>
         <Route path="/" element={
           loggedIn ?
-            <Home /> :
+            (<>
+              <Home />
+            </>
+            ) :
             <Login />
         } />
+        <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
         <Route path='/scan' element={<Test />} />

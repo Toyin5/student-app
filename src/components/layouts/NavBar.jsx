@@ -20,9 +20,9 @@ const Navbar = () => {
                     <div className="navbar-item">
                         <span className="icon-text">
                             <span className="icon is-white">
-                                <Link to="/"><FaHome /></Link>
+                                <Link to="/home"><FaHome /></Link>
                             </span>
-                            <Link to="/"><span>{user}</span></Link>
+                            <Link to="/home"><span>{user}</span></Link>
                         </span>
 
                     </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
 
                 <div className={`navbar-menu ${isOpen && "is-active"}`}>
                     <div className="navbar-start">
-                        <NavLink className="navbar-item" activeclassname="is-active" to="/">
+                        <NavLink className="navbar-item" activeclassname="is-active" to="/home">
                             Home
                         </NavLink>
 
@@ -63,7 +63,7 @@ const Navbar = () => {
                         </NavLink>
                     </div>
 
-                    <div className="navbar-end">
+                    {/* <div className="navbar-end">
                         <div className="navbar-item">
                             <span className="icon-text">
                                 <span className="icon">
@@ -72,7 +72,7 @@ const Navbar = () => {
                                 <Link to="/" ><span>{user}</span></Link>
                             </span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </nav>
